@@ -31,6 +31,7 @@ class ScopeTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($s->isEqual(new Scope("read write")));
         $this->assertFalse($s->isEqual(new Scope("bar foo read write")));
         $this->assertFalse($s->hasAnyScope(new Scope(array("bar", "baz"))));
+        $this->assertEquals("read write foo", $s->getScopeAsString());
     }
 
     public function testEmptyScope()

@@ -100,11 +100,6 @@ class Scope implements \Serializable
         return false;
     }
 
-    public function getScope()
-    {
-        return $this->scope;
-    }
-
     public function isEqual(Scope $scope)
     {
         $thisScope = $this->scope;
@@ -123,6 +118,16 @@ class Scope implements \Serializable
         }
 
         return true;
+    }
+
+    public function getScope()
+    {
+        return $this->scope;
+    }
+
+    public function getScopeAsString()
+    {
+        return implode(" ", $this->scope);
     }
 
     public function serialize()
