@@ -7,3 +7,8 @@ This library aims to contain all classes that can be shared between:
 
 At the moment this project is in the stage of collection shareable code and 
 have the projects use it instead of their own contained copy.
+
+# License
+Licensed under the Apache License, Version 2.0;
+
+   http://www.apache.org/licenses/LICENSE-2.0
