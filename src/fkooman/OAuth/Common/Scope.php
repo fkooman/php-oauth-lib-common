@@ -19,7 +19,7 @@ namespace fkooman\OAuth\Common;
 
 use fkooman\OAuth\Common\Exception\ScopeException;
 
-class Scope implements \Serializable
+class Scope
 {
     /** @var array */
     private $scope;
@@ -128,15 +128,5 @@ class Scope implements \Serializable
     public function getScopeAsString()
     {
         return implode(" ", $this->scope);
-    }
-
-    public function serialize()
-    {
-        return serialize($this->scope);
-    }
-
-    public function unserialize($data)
-    {
-        $this->scope = unserialize($data);
     }
 }
