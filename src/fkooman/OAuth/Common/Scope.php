@@ -136,4 +136,9 @@ class Scope
     {
         return implode(" ", $this->scope);
     }
+
+    public function __toString()
+    {
+        return $this->toString();
+    }
 }
