@@ -21,15 +21,15 @@ class ScopeTest extends \PHPUnit_Framework_TestCase
 {
     public function testScope()
     {
-        $s = new Scope("read write foo");
+        $s = new Scope(array("read", "write", "foo"));
         $this->assertFalse($s->isEmpty());
-        $this->assertTrue($s->hasScope(new Scope("read")));
-        $this->assertTrue($s->hasScope(new Scope("write")));
-        $this->assertTrue($s->hasScope(new Scope("foo")));
-        $this->assertTrue($s->hasAnyScope(new Scope("foo bar")));
+        $this->assertTrue($s->hasScope(new Scope(array("read"))));
+        $this->assertTrue($s->hasScope(new Scope(array("write"))));
+        $this->assertTrue($s->hasScope(new Scope(array("foo"))));
+        $this->assertTrue($s->hasAnyScope(new Scope(array("foo", "bar"))));
         $this->assertEquals(0, $s->compareTo(new Scope(array("foo", "write", "read"))));
-        $this->assertNotEquals(0, $s->compareTo(new Scope("read write")));
-        $this->assertNotEquals(0, $s->compareTo(new Scope("bar foo read write")));
+        $this->assertNotEquals(0, $s->compareTo(new Scope(array("read", "write"))));
+        $this->assertNotEquals(0, $s->compareTo(new Scope(array("bar", "foo", "read", "write"))));
         $this->assertFalse($s->hasAnyScope(new Scope(array("bar", "baz"))));
         $this->assertEquals("read write foo", $s->toString());
         $this->assertEquals("read write foo", $s->__toString());
@@ -40,7 +40,7 @@ class ScopeTest extends \PHPUnit_Framework_TestCase
         $s = new Scope();
         $this->assertTrue($s->isEmpty());
         $this->assertEquals(0, $s->compareTo(new Scope()));
-        $this->assertFalse($s->hasScope(new Scope("foo")));
+        $this->assertFalse($s->hasScope(new Scope(array("foo"))));
         $this->assertTrue($s->hasScope(new Scope()));
         $this->assertTrue($s->hasAnyScope(new Scope()));
     }
@@ -51,7 +51,7 @@ class ScopeTest extends \PHPUnit_Framework_TestCase
      */
     public function testInvalidScopeToken()
     {
-        $s = new Scope("François");
+        $s = new Scope(array("François"));
     }
 
     /**
@@ -65,27 +65,17 @@ class ScopeTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @expectedException fkooman\OAuth\Common\Exception\ScopeException
-     * @expectedExceptionMessage scope token must be a non-empty string
+     * @expectedExceptionMessage invalid scope token 'foo '
      */
     public function testEmptyStringScope()
     {
-        $s = new Scope("foo  bar");
-    }
-
-    /**
-     * @expectedException fkooman\OAuth\Common\Exception\ScopeException
-     * @expectedExceptionMessage scope must be string or array
-     */
-    public function testNonStringOrArrayParam()
-    {
-        $s = new Scope(5);
+        $s = new Scope(array("foo ", "bar"));
     }
 
     public function testSerialize()
     {
-        $s = new Scope("foo bar baz");
-        $data = serialize($s);
-        $t = unserialize($data);
+        $s = new Scope(array("foo", "bar", "baz"));
+        $t = new Scope($s->toArray());
         $this->assertEquals(0, $t->compareTo($s));
     }
 }

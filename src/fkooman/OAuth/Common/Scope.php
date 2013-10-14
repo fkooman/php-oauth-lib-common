@@ -24,49 +24,14 @@ class Scope
     /** @var array */
     private $scope;
 
-    /**
-     * Construct a new Scope object.
-     *
-     * @param mixed $scope the scope as array or string
-     */
-    public function __construct($scope = "")
-    {
-        if (is_array($scope)) {
-            $this->scope = $this->fromArray($scope);
-        } elseif (is_string($scope)) {
-            $this->scope = $this->fromString($scope);
-        } else {
-            throw new ScopeException("scope must be string or array");
-        }
-    }
-
-    private function fromArray(array $scope)
+    public function __construct(array $scope = array())
     {
         foreach ($scope as $s) {
-            if (!self::validateScopeToken($s)) {
+            if (!$this->validateScopeToken($s)) {
                 throw new ScopeException(sprintf("invalid scope token '%s'", $s));
             }
         }
-
-        return array_values($scope);
-    }
-
-    private function fromString($scope)
-    {
-        $scopeArray = (0 >= strlen($scope)) ? array() : explode(" ", $scope);
-
-        return $this->fromArray($scopeArray);
-    }
-
-    private static function validateScopeToken($scopeToken)
-    {
-        if (!is_string($scopeToken) || 0 >= strlen($scopeToken)) {
-            throw new ScopeException("scope token must be a non-empty string");
-        }
-        $scopeTokenRegExp = '/^(?:\x21|[\x23-\x5B]|[\x5D-\x7E])+$/';
-        $result = preg_match($scopeTokenRegExp, $scopeToken);
-
-        return 1 === $result;
+        $this->scope = array_values($scope);
     }
 
     public function isEmpty()
@@ -140,5 +105,16 @@ class Scope
     public function __toString()
     {
         return $this->toString();
+    }
+
+    private function validateScopeToken($scopeToken)
+    {
+        if (!is_string($scopeToken) || 0 >= strlen($scopeToken)) {
+            throw new ScopeException("scope token must be a non-empty string");
+        }
+        $scopeTokenRegExp = '/^(?:\x21|[\x23-\x5B]|[\x5D-\x7E])+$/';
+        $result = preg_match($scopeTokenRegExp, $scopeToken);
+
+        return 1 === $result;
     }
 }
