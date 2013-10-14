@@ -48,7 +48,7 @@ class Scope
             }
         }
 
-        return $scope;
+        return array_values($scope);
     }
 
     private function fromString($scope)
@@ -76,7 +76,7 @@ class Scope
 
     public function hasScope(Scope $scope)
     {
-        foreach ($scope->getScope() as $s) {
+        foreach ($scope->toArray() as $s) {
             if (!in_array($s, $this->scope)) {
                 return false;
             }
@@ -91,7 +91,7 @@ class Scope
             return true;
         }
 
-        foreach ($scope->getScope() as $s) {
+        foreach ($scope->toArray() as $s) {
             if (in_array($s, $this->scope)) {
                 return true;
             }
@@ -100,32 +100,39 @@ class Scope
         return false;
     }
 
-    public function isEqual(Scope $scope)
+    /**
+     * Compare Scope to other Scope
+     *
+     * @param  Scope $that the Scope to compare with
+     * @return -1    if that scope misses scopes from this scope, 1 if this scope
+     *         misses scopes from that scope, 0 if the scopes are equal
+     */
+    public function compareTo(Scope $that)
     {
-        $thisScope = $this->scope;
-        $thatScope = $scope->getScope();
+        $thisScope = $this->toArray();
+        $thatScope = $that->toArray();
 
         foreach ($thisScope as $s) {
             if (!in_array($s, $thatScope)) {
-                return false;
+                return -1;
             }
         }
 
         foreach ($thatScope as $s) {
             if (!in_array($s, $thisScope)) {
-                return false;
+                return 1;
             }
         }
 
-        return true;
+        return 0;
     }
 
-    public function getScope()
+    public function toArray()
     {
         return $this->scope;
     }
 
-    public function getScopeAsString()
+    public function toString()
     {
         return implode(" ", $this->scope);
     }

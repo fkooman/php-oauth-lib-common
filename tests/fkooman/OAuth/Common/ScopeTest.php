@@ -27,18 +27,18 @@ class ScopeTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($s->hasScope(new Scope("write")));
         $this->assertTrue($s->hasScope(new Scope("foo")));
         $this->assertTrue($s->hasAnyScope(new Scope("foo bar")));
-        $this->assertTrue($s->isEqual(new Scope(array("foo", "write", "read"))));
-        $this->assertFalse($s->isEqual(new Scope("read write")));
-        $this->assertFalse($s->isEqual(new Scope("bar foo read write")));
+        $this->assertEquals(0, $s->compareTo(new Scope(array("foo", "write", "read"))));
+        $this->assertNotEquals(0, $s->compareTo(new Scope("read write")));
+        $this->assertNotEquals(0, $s->compareTo(new Scope("bar foo read write")));
         $this->assertFalse($s->hasAnyScope(new Scope(array("bar", "baz"))));
-        $this->assertEquals("read write foo", $s->getScopeAsString());
+        $this->assertEquals("read write foo", $s->toString());
     }
 
     public function testEmptyScope()
     {
         $s = new Scope();
         $this->assertTrue($s->isEmpty());
-        $this->assertTrue($s->isEqual(new Scope()));
+        $this->assertEquals(0, $s->compareTo(new Scope()));
         $this->assertFalse($s->hasScope(new Scope("foo")));
         $this->assertTrue($s->hasScope(new Scope()));
         $this->assertTrue($s->hasAnyScope(new Scope()));
@@ -85,6 +85,6 @@ class ScopeTest extends \PHPUnit_Framework_TestCase
         $s = new Scope("foo bar baz");
         $data = serialize($s);
         $t = unserialize($data);
-        $this->assertTrue($t->isEqual($s));
+        $this->assertEquals(0, $t->compareTo($s));
     }
 }
