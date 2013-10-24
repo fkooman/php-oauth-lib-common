@@ -28,7 +28,7 @@ class Scope
     {
         foreach ($scope as $s) {
             if (!$this->validateScopeToken($s)) {
-                throw new ScopeException(sprintf("invalid scope token '%s'", $s));
+                throw new ScopeException("invalid scope token");
             }
         }
         $this->scope = array_values($scope);
@@ -65,31 +65,24 @@ class Scope
         return false;
     }
 
-    /**
-     * Compare Scope to other Scope
-     *
-     * @param  Scope $that the Scope to compare with
-     * @return -1    if that scope misses scopes from this scope, 1 if this scope
-     *         misses scopes from that scope, 0 if the scopes are equal
-     */
-    public function compareTo(Scope $that)
+    public function equals(Scope $that)
     {
         $thisScope = $this->toArray();
         $thatScope = $that->toArray();
 
         foreach ($thisScope as $s) {
             if (!in_array($s, $thatScope)) {
-                return -1;
+                return false;
             }
         }
 
         foreach ($thatScope as $s) {
             if (!in_array($s, $thisScope)) {
-                return 1;
+                return false;
             }
         }
 
-        return 0;
+        return true;
     }
 
     public function toArray()
