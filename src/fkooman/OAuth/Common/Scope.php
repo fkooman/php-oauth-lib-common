@@ -34,6 +34,15 @@ class Scope
         $this->scope = array_values($scope);
     }
 
+    public static function fromString($scope)
+    {
+        if (!is_string($scope) || 0 >= strlen($scope)) {
+            throw new ScopeException("provided scope must be non empty string");
+        }
+
+        return new self(explode(" ", $scope));
+    }
+
     public function isEmpty()
     {
         return 0 === count($this->scope);

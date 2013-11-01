@@ -1,5 +1,8 @@
 # Release History
 
+## 0.3.1
+* Introduce `Scope::fromString`
+
 ## 0.3.0
 * New API
 ** remove `compareTo()` returning 0, -1 and -1

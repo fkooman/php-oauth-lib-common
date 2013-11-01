@@ -45,6 +45,12 @@ class ScopeTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($s->hasAnyScope(new Scope()));
     }
 
+    public function testScopeFromString()
+    {
+        $s = Scope::fromString("foo bar");
+        $this->assertEquals(array("foo", "bar"), $s->toArray());
+    }
+
     /**
      * @expectedException fkooman\OAuth\Common\Exception\ScopeException
      * @expectedExceptionMessage invalid scope token
