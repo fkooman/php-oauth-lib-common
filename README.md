@@ -8,6 +8,12 @@ This library aims to contain all classes that can be shared between:
 At the moment this project is in the stage of collection shareable code and 
 have the projects use it instead of their own contained copy.
 
+# Modules
+The following classes are available. See the `docs/` directory for more
+information on the API and how to use them.
+
+* Scope
+
 # License
 Licensed under the Apache License, Version 2.0;
 

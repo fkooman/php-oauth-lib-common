@@ -51,6 +51,16 @@ class ScopeTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(array("foo", "bar"), $s->toArray());
     }
 
+    public function testHasOnlyScope()
+    {
+        $scope = new Scope(array("foo", "bar"));
+        $this->assertTrue($scope->hasOnlyScope(new Scope(array("foo", "bar", "baz"))));
+        $this->assertFalse($scope->hasOnlyScope(new Scope(array("foo"))));
+        $this->assertFalse($scope->hasOnlyScope(new Scope()));
+        $scopeTwo = new Scope();
+        $this->assertTrue($scopeTwo->hasOnlyScope(new Scope(array("foo"))));
+    }
+
     /**
      * @expectedException fkooman\OAuth\Common\Exception\ScopeException
      * @expectedExceptionMessage invalid scope token
@@ -67,6 +77,15 @@ class ScopeTest extends \PHPUnit_Framework_TestCase
     public function testEmptyArrayScope()
     {
         $s = new Scope(array("foo", "", "bar"));
+    }
+
+    /**
+     * @expectedException fkooman\OAuth\Common\Exception\ScopeException
+     * @expectedExceptionMessage provided scope must be non empty string
+     */
+    public function testNonStringFromString()
+    {
+        $s = Scope::fromString(5);
     }
 
     /**

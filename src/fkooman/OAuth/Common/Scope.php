@@ -48,10 +48,10 @@ class Scope
         return 0 === count($this->scope);
     }
 
-    public function hasScope(Scope $scope)
+    public function hasScope(Scope $that)
     {
-        foreach ($scope->toArray() as $s) {
-            if (!in_array($s, $this->scope)) {
+        foreach ($that->toArray() as $s) {
+            if (!in_array($s, $this->toArray())) {
                 return false;
             }
         }
@@ -59,19 +59,34 @@ class Scope
         return true;
     }
 
-    public function hasAnyScope(Scope $scope)
+    public function hasAnyScope(Scope $that)
     {
-        if ($scope->isEmpty()) {
+        if ($that->isEmpty()) {
             return true;
         }
 
-        foreach ($scope->toArray() as $s) {
-            if (in_array($s, $this->scope)) {
+        foreach ($that->toArray() as $s) {
+            if (in_array($s, $this->toArray())) {
                 return true;
             }
         }
 
         return false;
+    }
+
+    public function hasOnlyScope(Scope $that)
+    {
+        if ($this->isEmpty()) {
+            return true;
+        }
+
+        foreach ($this->toArray() as $s) {
+            if (!in_array($s, $that->toArray())) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public function equals(Scope $that)
