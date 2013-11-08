@@ -1,5 +1,9 @@
 # Release History
 
+## 0.3.2
+* Add `Scope::hasOnlyScope`
+* Add documentation, see `docs/SCOPES.md`
+
 ## 0.3.1
 * Introduce `Scope::fromString`
 
