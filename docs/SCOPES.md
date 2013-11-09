@@ -2,6 +2,31 @@
 This document describes the rationale behind the handling of OAuth scopes and
 describes the methods.
 
+## Instantiation
+There are two ways to create a `Scope` object. One way is to use the 
+constructor:
+
+    $scope = new Scope(array("foo", "bar"));
+
+The other is to use the static `fromString` method:
+
+    $scope = Scope::fromString("foo bar");
+
+## isEmpty
+This method checks whether the scope is empty, i.e.: if it was created using 
+an empty array or empty string.
+
+## equals
+This method is used to compare two `Scope` objects. If they contain the exact
+same scope values they are considered equal.
+
+## toArray
+This converts the `Scope` object to an array.
+
+## toString and __toString
+Convert the `Scope` object to a string. Where each scope is separated by a 
+space.
+
 ## hasScope
 This method verifies that the object that this method is called on contains 
 the scopes in the parameter scope.

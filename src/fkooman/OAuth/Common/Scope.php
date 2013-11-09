@@ -36,8 +36,11 @@ class Scope
 
     public static function fromString($scope)
     {
-        if (!is_string($scope) || 0 >= strlen($scope)) {
-            throw new ScopeException("provided scope must be non empty string");
+        if (!is_string($scope)) {
+            throw new ScopeException("provided scope must be string");
+        }
+        if (0 === strlen($scope)) {
+            return new self(array());
         }
 
         return new self(explode(" ", $scope));

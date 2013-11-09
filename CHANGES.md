@@ -1,5 +1,8 @@
 # Release History
 
+## 0.3.3
+* Allow empty string as parameter to `Scope::fromString`
+
 ## 0.3.2
 * Add `Scope::hasOnlyScope`
 * Add documentation, see `docs/SCOPES.md`
