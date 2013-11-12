@@ -31,7 +31,8 @@ class Scope
                 throw new ScopeException("invalid scope token");
             }
         }
-        $this->scope = array_values($scope);
+        sort($scope, SORT_STRING);
+        $this->scope = array_values(array_unique($scope, SORT_STRING));
     }
 
     public static function fromString($scope)
@@ -77,6 +78,14 @@ class Scope
         return false;
     }
 
+    /**
+     * @deprecated
+     */
+    public function isSubsetOf(Scope $that)
+    {
+        return $this->hasOnlyScope($that);
+    }
+
     public function hasOnlyScope(Scope $that)
     {
         if ($this->isEmpty()) {
@@ -112,6 +121,14 @@ class Scope
         return true;
     }
 
+    /**
+     * @deprecated
+     */
+    public function getScopeAsArray()
+    {
+        return $this->toArray();
+    }
+
     public function toArray()
     {
         return $this->scope;
@@ -123,6 +140,14 @@ class Scope
     }
 
     public function __toString()
+    {
+        return $this->toString();
+    }
+
+    /**
+     * @deprecated
+     */
+    public function getScope()
     {
         return $this->toString();
     }

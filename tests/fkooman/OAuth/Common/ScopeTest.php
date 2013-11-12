@@ -31,8 +31,8 @@ class ScopeTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($s->equals(new Scope(array("read", "write"))));
         $this->assertFalse($s->equals(new Scope(array("bar", "foo", "read", "write"))));
         $this->assertFalse($s->hasAnyScope(new Scope(array("bar", "baz"))));
-        $this->assertEquals("read write foo", $s->toString());
-        $this->assertEquals("read write foo", $s->__toString());
+        $this->assertEquals("foo read write", $s->toString());
+        $this->assertEquals("foo read write", $s->__toString());
     }
 
     public function testEmptyScope()
@@ -48,7 +48,7 @@ class ScopeTest extends \PHPUnit_Framework_TestCase
     public function testScopeFromString()
     {
         $s = Scope::fromString("foo bar");
-        $this->assertEquals(array("foo", "bar"), $s->toArray());
+        $this->assertEquals(array("bar", "foo"), $s->toArray());
     }
 
     public function testHasOnlyScope()
