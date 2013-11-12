@@ -81,11 +81,17 @@ class ScopeTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @expectedException fkooman\OAuth\Common\Exception\ScopeException
-     * @expectedExceptionMessage provided scope must be string
+     * @expectedExceptionMessage scope must be string
      */
     public function testNonStringFromString()
     {
         $s = Scope::fromString(5);
+    }
+
+    public function testNullFromString()
+    {
+        $s = Scope::fromString(null);
+        $this->assertTrue($s->isEmpty());
     }
 
     public function testEmptyStringFromString()

@@ -1,5 +1,8 @@
 # Release History
 
+## 0.4.1
+* Allow `null` as parameter to `Scope::fromString()`
+
 ## 0.4.0
 * Deduplicate and sort scope tokens at object creation
 * Reintroduce some older deprecated API methods, `isSubsetOf()`, `getToken()` 

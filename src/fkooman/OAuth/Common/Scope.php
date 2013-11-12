@@ -37,11 +37,14 @@ class Scope
 
     public static function fromString($scope)
     {
+        if (null === $scope) {
+            return new self();
+        }
         if (!is_string($scope)) {
-            throw new ScopeException("provided scope must be string");
+            throw new ScopeException("scope must be string");
         }
         if (0 === strlen($scope)) {
-            return new self(array());
+            return new self();
         }
 
         return new self(explode(" ", $scope));
