@@ -35,7 +35,7 @@ class Scope
         $this->scope = array_values(array_unique($scope, SORT_STRING));
     }
 
-    public static function fromString($scope)
+    public static function fromString($scope, $separator = " ")
     {
         if (null === $scope) {
             return new self();
@@ -46,8 +46,11 @@ class Scope
         if (0 === strlen($scope)) {
             return new self();
         }
+        if (!is_string($separator)) {
+            throw new ScopeException("separator must be string");
+        }
 
-        return new self(explode(" ", $scope));
+        return new self(explode($separator, $scope));
     }
 
     public function isEmpty()
@@ -137,9 +140,13 @@ class Scope
         return $this->scope;
     }
 
-    public function toString()
+    public function toString($separator = " ")
     {
-        return implode(" ", $this->scope);
+        if (!is_string($separator)) {
+            throw new ScopeException("separator must be string");
+        }
+
+        return implode($separator, $this->scope);
     }
 
     public function __toString()

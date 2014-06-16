@@ -33,6 +33,7 @@ class ScopeTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($s->hasAnyScope(new Scope(array("bar", "baz"))));
         $this->assertEquals("foo read write", $s->toString());
         $this->assertEquals("foo read write", $s->__toString());
+        $this->assertEquals("foo,read,write", $s->toString(","));
     }
 
     public function testEmptyScope()
@@ -48,6 +49,12 @@ class ScopeTest extends \PHPUnit_Framework_TestCase
     public function testScopeFromString()
     {
         $s = Scope::fromString("foo bar");
+        $this->assertEquals(array("bar", "foo"), $s->toArray());
+    }
+
+    public function testScopeFromStringCommaSeparated()
+    {
+        $s = Scope::fromString("foo,bar", ",");
         $this->assertEquals(array("bar", "foo"), $s->toArray());
     }
 

@@ -1,5 +1,9 @@
 # Release History
 
+## 0.4.2
+* Allow specifying a string separator in `Scope::toString()` and 
+  `Scope::fromString()` instead of just the default space
+
 ## 0.4.1
 * Allow `null` as parameter to `Scope::fromString()`
 

@@ -12,6 +12,10 @@ The other is to use the static `fromString` method:
 
     $scope = Scope::fromString("foo bar");
 
+As a second parameter you can specify the separator, e.g.: 
+
+    $scope = Scope::fromString("foo,bar", ",");
+
 ## isEmpty
 This method checks whether the scope is empty, i.e.: if it was created using 
 an empty array or empty string.
@@ -25,7 +29,8 @@ This converts the `Scope` object to an array.
 
 ## toString and __toString
 Convert the `Scope` object to a string. Where each scope is separated by a 
-space.
+space. You can specify an optional (string) parameter indicating the 
+separator.
 
 ## hasScope
 This method verifies that the object that this method is called on contains 
