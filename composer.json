@@ -13,7 +13,7 @@
     },
     "description": "PHP library for common OAuth classes.",
     "license": "Apache-2.0",
-    "name": "fkooman/php-oauth-lib-common",
+    "name": "fkooman/oauth-common",
     "require": {
         "php": ">=5.3.3"
     }

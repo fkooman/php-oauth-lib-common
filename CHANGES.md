@@ -1,5 +1,8 @@
 # Release History
 
+## 0.5.0
+* rename package to fkooman/oauth-common
+
 ## 0.4.2
 * Allow specifying a string separator in `Scope::toString()` and 
   `Scope::fromString()` instead of just the default space
