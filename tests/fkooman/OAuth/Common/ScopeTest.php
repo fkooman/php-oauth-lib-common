@@ -17,7 +17,10 @@
 
 namespace fkooman\OAuth\Common;
 
-class ScopeTest extends \PHPUnit_Framework_TestCase
+use InvalidArgumentException;
+use PHPUnit_Framework_TestCase;
+
+class ScopeTest extends PHPUnit_Framework_TestCase
 {
     public function testScope()
     {
@@ -69,7 +72,7 @@ class ScopeTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException fkooman\OAuth\Common\Exception\ScopeException
+     * @expectedException InvalidArgumentException
      * @expectedExceptionMessage invalid scope token
      */
     public function testInvalidScopeToken()
@@ -78,7 +81,7 @@ class ScopeTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException fkooman\OAuth\Common\Exception\ScopeException
+     * @expectedException InvalidArgumentException
      * @expectedExceptionMessage scope token must be a non-empty string
      */
     public function testEmptyArrayScope()
@@ -87,7 +90,7 @@ class ScopeTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException fkooman\OAuth\Common\Exception\ScopeException
+     * @expectedException InvalidArgumentException
      * @expectedExceptionMessage scope must be string
      */
     public function testNonStringFromString()
@@ -108,7 +111,7 @@ class ScopeTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException fkooman\OAuth\Common\Exception\ScopeException
+     * @expectedException InvalidArgumentException
      * @expectedExceptionMessage invalid scope token
      */
     public function testEmptyStringScope()

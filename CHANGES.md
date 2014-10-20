@@ -1,5 +1,10 @@
 # Release History
 
+## 0.6.0
+- add TokenIntrospection class (use by `php-oauth-lib-rs` and `php-lib-rest`)
+- no longer use `ScopeException`, but use `InvalidArgumentException` from PHP 
+  SPL instead
+
 ## 0.5.0
 * rename package to fkooman/oauth-common
 
