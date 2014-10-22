@@ -1,5 +1,10 @@
 # Release History
 
+## 0.6.1
+- add `Entitlement` class that is an exact copy of `Scope` with all occurences
+  of `Scope` replaced by `Entitlement` and `scope` by `entitlement`. In the
+  future there needs to be a better way...
+
 ## 0.6.0
 - add TokenIntrospection class (use by `php-oauth-lib-rs` and `php-lib-rest`)
 - no longer use `ScopeException`, but use `InvalidArgumentException` from PHP 

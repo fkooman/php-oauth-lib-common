@@ -5,7 +5,7 @@
 %global github_name      php-oauth-lib-common
 
 Name:       php-%{composer_vendor}-%{composer_project}
-Version:    0.6.0
+Version:    0.6.1
 Release:    1%{?dist}
 Summary:    Common PHP classes for OAuth functionality
 
@@ -39,6 +39,9 @@ cp -pr src/* ${RPM_BUILD_ROOT}%{_datadir}/php
 %doc README.md CHANGES.md COPYING composer.json
 
 %changelog
+* Wed Oct 22 2014 François Kooman <fkooman@tuxed.net> - 0.6.1-2
+- update to 0.6.1
+
 * Mon Oct 20 2014 François Kooman <fkooman@tuxed.net> - 0.6.0-1
 - update to 0.6.0
 

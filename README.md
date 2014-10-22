@@ -14,6 +14,7 @@ The following classes are available. See the `docs/` directory for more
 information on the API and how to use them.
 
 * Scope
+* Entitlement
 * TokenIntrospection
 
 # License
