@@ -8,7 +8,7 @@
     ],
     "autoload": {
         "psr-0": {
-            "fkooman\\OAuth\\Common\\": "src/"
+            "fkooman\\OAuth\\Common": "src/"
         }
     },
     "description": "PHP library for common OAuth classes.",

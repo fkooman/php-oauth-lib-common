@@ -1,5 +1,9 @@
 # Release History
 
+## 0.7.0
+- remove deprecated methods `isSubSetOf()`, `getScope()`, `getScopeAsArray()`
+- add `getEntitlement()` to `TokenIntrospection`
+
 ## 0.6.1
 - add `Entitlement` class that is an exact copy of `Scope` with all occurences
   of `Scope` replaced by `Entitlement` and `scope` by `entitlement`. In the

@@ -57,6 +57,10 @@ class TokenIntrospection
             throw new InvalidArgumentException("scope must be string");
         }
 
+        if (isset($response['x-entitlement']) && !is_string($response['x-entitlement'])) {
+            throw new InvalidArgumentException("x-entitlement must be string");
+        }
+
         $this->response = $response;
     }
 
@@ -103,6 +107,22 @@ class TokenIntrospection
         }
 
         return Scope::fromString($this->getKeyValue('scope'));
+    }
+
+    /**
+     * OPTIONAL|NON-STANDARD.  A space-separated list of strings representing
+     * the entitlements associated with this token, in the format described in
+     * Section 3.3 of OAuth 2.0 [RFC6749].
+     *
+     * @return fkooman\OAuth\Common\Entitlement
+     */
+    public function getEntitlement()
+    {
+        if (null === $this->getKeyValue('x-entitlement')) {
+            return new Entitlement();
+        }
+
+        return Entitlement::fromString($this->getKeyValue('x-entitlement'));
     }
 
     /**

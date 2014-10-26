@@ -42,6 +42,7 @@ class TokenIntrospectionTest extends PHPUnit_Framework_TestCase
                 "aud" => "foobar",
                 "scope" => "foo bar baz",
                 "token_type" => "bearer",
+                'x-entitlement' => 'fooe bare baze',
                 "x-ext" => array("proprietary", "extension", "data"),
             )
         );
@@ -58,6 +59,17 @@ class TokenIntrospectionTest extends PHPUnit_Framework_TestCase
                         "foo",
                         "bar",
                         "baz",
+                    )
+                )
+            )
+        );
+        $this->assertTrue(
+            $t->getEntitlement()->equals(
+                new Entitlement(
+                    array(
+                        "fooe",
+                        "bare",
+                        "baze",
                     )
                 )
             )

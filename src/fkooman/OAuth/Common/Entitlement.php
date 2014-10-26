@@ -84,14 +84,6 @@ class Entitlement
         return false;
     }
 
-    /**
-     * @deprecated
-     */
-    public function isSubsetOf(Entitlement $that)
-    {
-        return $this->hasOnlyEntitlement($that);
-    }
-
     public function hasOnlyEntitlement(Entitlement $that)
     {
         if ($this->isEmpty()) {
@@ -127,14 +119,6 @@ class Entitlement
         return true;
     }
 
-    /**
-     * @deprecated
-     */
-    public function getEntitlementAsArray()
-    {
-        return $this->toArray();
-    }
-
     public function toArray()
     {
         return $this->entitlement;
@@ -150,14 +134,6 @@ class Entitlement
     }
 
     public function __toString()
-    {
-        return $this->toString();
-    }
-
-    /**
-     * @deprecated
-     */
-    public function getEntitlement()
     {
         return $this->toString();
     }

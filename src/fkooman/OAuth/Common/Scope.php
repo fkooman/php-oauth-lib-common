@@ -127,14 +127,6 @@ class Scope
         return true;
     }
 
-    /**
-     * @deprecated
-     */
-    public function getScopeAsArray()
-    {
-        return $this->toArray();
-    }
-
     public function toArray()
     {
         return $this->scope;
@@ -150,14 +142,6 @@ class Scope
     }
 
     public function __toString()
-    {
-        return $this->toString();
-    }
-
-    /**
-     * @deprecated
-     */
-    public function getScope()
     {
         return $this->toString();
     }
